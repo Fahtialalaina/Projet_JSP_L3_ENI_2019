@@ -28,13 +28,13 @@
 <div class="x_content">
 <br />
 <%
-ResultSet res2 = null;
+ResultSet res11 = null;
 int num = 0;
 stat = conn.createStatement();
 String data2 = "SELECT MAX(idPret) as midc FROM pret";
-res2 = stat.executeQuery(data2);
-while(res2.next()){
-num = res2.getInt("midc");
+res11 = stat.executeQuery(data2);
+while(res11.next()){
+num = res11.getInt("midc");
 }
 String nb = String.valueOf(num + 1);
 String numcb = "";
