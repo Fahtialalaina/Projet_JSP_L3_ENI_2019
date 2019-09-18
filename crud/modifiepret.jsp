@@ -30,58 +30,78 @@
 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="" method="POST">
 <%
 stat = conn.createStatement();
+stat2 = conn2.createStatement();
 String u = request.getParameter("u");
 int num = Integer.parseInt(u);
 String data = "SELECT * FROM pret WHERE idPret='"+num+"'";
 res = stat.executeQuery(data);
+
+String dataccc = "SELECT * FROM client_table ORDER BY idc DESC";
+res2 = stat2.executeQuery(dataccc);
+
 while(res.next()){
+
 %>
-<input type="hidden" name="idc" value='<%= res.getString("idc") %>'/>
+<input type="hidden" name="idp" value='<%= res.getString("idPret") %>'/>
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="numc">N° Client <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="a">N° Pret <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="numc" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("cin") %>'>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nom">Nom <span class="required">*</span>
-</label>
-<div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="nom" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("nomc") %>'>
+<input type="text" name="a" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("pretNum") %>'>
 </div>
 </div>
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">N° Téléphone <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="b">Nom Client <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="tel" name="phone" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("gsm") %>'>
+<input type="text" name="nom" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("NomCli") %>'>
 </div>
 </div>
+
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="born">Date Naissace <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="idC">Nom Client <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="date" name="born" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("date_naissance") %>'>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sexe">Sexe<span class="required">*</span>
-</label>
-<div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="sexe" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("sexe") %>'>
-</div>
-</div>
-<div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="adresse">Adresse <span class="required">*</span>
-</label>
-<div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="adresse" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("adresse") %>'>
-</div>
-</div>
+<select name="idC">
+<option name="idC" value='<%= res.getString("NomCli") %>'> <%= res.getString("NomCli") %> </option>
+<%
+
+while(res2.next()){
+%>
+<option name="idC" value='<%= res2.getInt("idc") %>' > <%= res2.getString("nomc") %>   </option>
 <%
 }
 %>
+</select>
+</div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="c">Nom Banque <span class="required">*</span>
+</label>
+<div class="col-md-6 col-sm-6 col-xs-12">
+<input type="text" name="c" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("NomBq") %>'>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="d">Montant <span class="required">*</span>
+</label>
+<div class="col-md-6 col-sm-6 col-xs-12">
+<input type="int" name="d" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("Montant") %>'>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="e">date du Pre<span class="required">*</span>
+</label>
+<div class="col-md-6 col-sm-6 col-xs-12">
+<input type="date" name="e" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("datePret") %>'>
+</div>
+</div>
+
+<%
+}
+%>
+
 <div class="ln_solid"></div>
 <div class="form-group">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -102,21 +122,21 @@ while(res.next()){
 <jsp:include page="../include/footer.jsp" />
 <%
 String idc = request.getParameter("idc");
-String numc = request.getParameter("numc");
-String nom = request.getParameter("nom");
-String phone = request.getParameter("phone"); 
-String born = request.getParameter("born");
-String sexe = request.getParameter("sexe");
+String a = request.getParameter("a");
+String b = request.getParameter("b");
+String c = request.getParameter("c"); 
+String d = request.getParameter("d");
+String e = request.getParameter("e");
 String adresse = request.getParameter("adresse");
 
-if(idc!=null && numc!=null && nom!=null && phone!=null && born!=null && sexe!=null && adresse!=null){
-String query = "UPDATE client_table SET cin=?, nomc=?, gsm=?, date_naissance=?, sexe=?, adresse=? WHERE idc='"+idc+"'";
+if(idc!=null && a!=null && b!=null && c!=null && d!=null && e!=null && adresse!=null){
+String query = "UPDATE client_table SET cin=?, bc=?, gsm=?, date_naissance=?, e=?, adresse=? WHERE idc='"+idc+"'";
 stmt = conn.prepareStatement(query);
-stmt.setString(1,numc);
-stmt.setString(2,nom);
-stmt.setString(3,phone);
-stmt.setString(4,born);
-stmt.setString(5,sexe);
+stmt.setString(1,a);
+stmt.setString(2,b);
+stmt.setString(3,c);
+stmt.setString(4,d);
+stmt.setString(5,e);
 stmt.setString(6,adresse);
 stmt.executeUpdate();
 response.sendRedirect("../pages/listeclient.jsp");
