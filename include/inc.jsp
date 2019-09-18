@@ -6,6 +6,9 @@
 <%@page import="java.util.*" %>
 <%
     Statement stat = null;
+    Statement stat2 = null;
     ResultSet res = null;
+    ResultSet res2 = null;
     PreparedStatement stmt = null;
+    PreparedStatement stmt2 = null;
 %>
