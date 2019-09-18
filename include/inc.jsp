@@ -7,8 +7,11 @@
 <%
     Statement stat = null;
     Statement stat2 = null;
+    Statement stat3 = null;
     ResultSet res = null;
     ResultSet res2 = null;
+    ResultSet res3 = null;
     PreparedStatement stmt = null;
     PreparedStatement stmt2 = null;
+    PreparedStatement stmt3 = null;
 %>
