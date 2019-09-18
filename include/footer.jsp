@@ -1,20 +1,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<!-- footer content -->
-  <footer>
-    <div class="pull-right">
-      Gestion Bancaire - Droits d'Auteurs réservés aux Administrateurs
-    </div>
-    <div class="clearfix"></div>
-  </footer>
-<!-- /footer content -->
+
+
+<footer class="main-footer">
+  <strong>Copyright &copy; 2019.</strong>
+  Gestion des Prets Bancaire - All right reserved
+  <div class="float-right d-none d-sm-inline-block">
+    <b>Version</b> 1.0
+  </div>
+</footer>
+
+
+
+
 </div>
 </div>
 
+</div>
+<!-- ./wrapper -->
+
 <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 <script src="../vendors/fastclick/lib/fastclick.js"></script>
 
@@ -86,5 +94,54 @@
 <script src="../build/js/custom.min.js"></script>
 <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
 <script src="../js/bootstrap-datepicker.js"></script>
+
+
+
+
+
+<!-- 
+TABLEAU TRAITEMENT 
+TABLEAU TRAITEMENT 
+TABLEAU TRAITEMENT 
+-->
+
+
+
+
+<!-- jQuery -->
+<script src="../Template/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../Template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../Template/plugins/datatables/jquery.dataTables.js"></script>
+<script src="../Template/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="../Template/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../Template/dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+$(function () {
+$("#example1").DataTable();
+$('#example2').DataTable({
+"paging": true,
+"lengthChange": false,
+"searching": false,
+"ordering": true,
+"info": true,
+"autoWidth": false,
+});
+});
+</script>
+
+<!-- 
+FIN TABLEAU TRAITEMENT 
+FIN TABLEAU TRAITEMENT 
+FIN TABLEAU TRAITEMENT 
+-->
+
+
+
+
 </body>
 </html>
