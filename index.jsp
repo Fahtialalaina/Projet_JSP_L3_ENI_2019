@@ -4,58 +4,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Authentification | Gestion Bancaire</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-    <link href="vendors/animate.css/animate.min.css" rel="stylesheet">
-    <link href="build/css/custom.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Gestion des Prets Bancaire | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="Template/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="Template/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="Template/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <b>Connexion</b>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form>
-              <h1>Authentification</h1>
-              <div>
-                <input type="text" class="form-control" name="admName" placeholder="Nom d'utilisateur" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" name="admPasswd" placeholder="Mot de passe" required="" />
-              </div>
-              <div>
-                  <button type="submit" class="btn btn-default submit">SE CONNECTER</button>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">Pas encore membre ?
-                  <a href="pages/register.jsp" class="to_register"> Créer un compte </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-
-                <div>
-                  <p>©2019 Tous droits réservés aux Administrateurs</p>
-                </div>
-              </div>
-            </form>
-          </section>
+      <form>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="admName">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
         </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Mot de passe" name="admPasswd">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mb-3">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        </a>
       </div>
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="#">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="pages/register.jsp" class="text-center">Creer un compte</a>
+      </p>
     </div>
-  </body>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="Template/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="Template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
 <%
 String admName = request.getParameter("admName");
@@ -67,7 +105,7 @@ if(admName!=null && admPasswd!=null){
   String tpcli = "";
 
   stat = conn.createStatement();
-  String data4 = "SELECT * FROM login_table WHERE nom='"+admName+"' AND password='"+admPasswd+"'";
+  String data4 = "SELECT * FROM login_table WHERE login='"+admName+"' AND password='"+admPasswd+"'";
   res4 = stat.executeQuery(data4);
   while(res4.next()){
     tncli = res4.getString("nom");
