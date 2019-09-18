@@ -62,6 +62,7 @@ String data = "SELECT * FROM pret ORDER BY idPret DESC";
 <tr>
 <th>N° Pret </th>
 <th>Nom Client </th>
+<th>Nom Banque </th>
 <th>Montant </th>
 <th>date du Pret </th>
 <th>Montant A Payer </th>
@@ -76,6 +77,7 @@ while(res.next()){
 <tr>
 <td><%=res.getString("pretNum")%></td>
 <td><%=res.getString("NomCli")%></td>
+<td><%=res.getString("NomBq")%></td>
 <td><%=res.getString("Montant")%></td>
 <td><%=res.getString("datePret")%></td>
 <td><%=res.getString("MontantAPayer")%></td>
