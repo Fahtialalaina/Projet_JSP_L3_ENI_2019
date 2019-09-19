@@ -1,6 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                Footer
+              </div>
+              <!-- /.card-footer-->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
 <footer class="main-footer">
   <strong>Copyright &copy; 2019.</strong>
   Gestion des Prets Bancaire - All right reserved
@@ -8,14 +25,11 @@
     <b>Version</b> 1.0
   </div>
 </footer>
-
-
-
-
-</div>
 </div>
 
-</div>
+
+
+
 <!-- ./wrapper -->
 
 <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -139,9 +153,6 @@ FIN TABLEAU TRAITEMENT
 FIN TABLEAU TRAITEMENT 
 FIN TABLEAU TRAITEMENT 
 -->
-
-
-
 
 </body>
 </html>

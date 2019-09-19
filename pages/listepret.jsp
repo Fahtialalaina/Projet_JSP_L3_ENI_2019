@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste des Clients | Gestion des Prets Bancaire</title>
+<title>Liste des Prets | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -17,7 +17,7 @@
 <div class="container-fluid">
 <div class="row mb-2">
 <div class="col-sm-6">
-<h1>Liste des Clients | <small>Gestion des Prets Bancaire</h1>
+<h1>Liste des Prets | <small>Gestion des Prets Bancaire</h1>
 </div>
 <!-- <div class="col-sm-6">
 <ol class="breadcrumb float-sm-right">

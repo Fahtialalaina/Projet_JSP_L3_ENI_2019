@@ -58,31 +58,31 @@ numcb = "B" + nb;
 %>
 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="" method="POST">
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="a">Desing <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="a">N° Banque <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="a" required="required" class="form-control col-md-7 col-xs-12">
+<input type="text" name="a" required="required" class="form-control col-md-7 col-xs-12" value='<%= numcb %>' readonly="readonly">
 </div>
 </div>
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="b">Adresse <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="b">Desing <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
 <input type="text" name="b" required="required" class="form-control col-md-7 col-xs-12">
 </div>
 </div>
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="c">Taux <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="c">Adresse <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="number" name="c" required="required" class="form-control col-md-7 col-xs-12">
+<input type="text" name="c" required="required" class="form-control col-md-7 col-xs-12">
 </div>
 </div>
 <div class="form-group">
-<label class="control-label col-md-3 col-sm-3 col-xs-12" for="d">N° Banque <span class="required">*</span>
+<label class="control-label col-md-3 col-sm-3 col-xs-12" for="d">Taux <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="d" required="required" class="form-control col-md-7 col-xs-12" value='<%= numcb %>' readonly="readonly">
+<input type="text" name="d" required="required" class="form-control col-md-7 col-xs-12">
 </div>
 </div>
 <div class="ln_solid"></div>
@@ -110,13 +110,12 @@ String c = request.getParameter("c");
 String d = request.getParameter("d");
 
 if(a!=null && b!=null && c!=null && d!=null){
-String data = "INSERT INTO `banque` (`NumBanque`, `NomBanque`, `AdresseBanque`, `TauxBanque`, `NumBq`) VALUES (?,?,?,?,?)";
+String data = "INSERT INTO `banque` (`NumBq`, `NomBanque`, `AdresseBanque`, `TauxBanque`) VALUES (?,?,?,?)";
 stmt = conn.prepareStatement(data);
-stmt.setString(1,nb);
-stmt.setString(2,a);
-stmt.setString(3,b);
-stmt.setString(4,c);
-stmt.setString(5,d);
+stmt.setString(1,a);
+stmt.setString(2,b);
+stmt.setString(3,c);
+stmt.setString(4,d);
 stmt.executeUpdate();
 response.sendRedirect("../pages/listbanque.jsp");
 }
