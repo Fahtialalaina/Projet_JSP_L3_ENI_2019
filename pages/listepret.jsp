@@ -1,65 +1,67 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Accueil | Gestion Bancaire</title>
+<title>Liste des Clients | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
 
-<div class="right_col" role="main">
-<div class="">
-<div class="page-title">
-<div class="title_left">
-<h3>Liste de Clients | <small>Gestion Bancaire</small></h3>
-</div>
 
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+<div class="container-fluid">
+<div class="row mb-2">
+<div class="col-sm-6">
+<h1>Liste des Clients | <small>Gestion des Prets Bancaire</h1>
+</div>
+<!-- <div class="col-sm-6">
+<ol class="breadcrumb float-sm-right">
+<li class="breadcrumb-item"><a href="#">Home</a></li>
+<li class="breadcrumb-item active">DataTables</li>
+</ol>
+</div> -->
+</div>
+<a href='../crud/ajoutpret.jsp'><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button></a>
+<a href='../pages/listepret.jsp'></a><button type="button" class="btn btn-default btn-sm" id="btnclear"><i class="fa fa-refresh" aria-hidden="true"></i> Actualiser</button></a>
 <div class="title_right">
 <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
-<div class="input-group">
-<a href='../crud/ajoutpret.jsp'><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button></a>
-<button type="button" class="btn btn-default btn-sm" id="btnclear"><i class="fa fa-refresh" aria-hidden="true"></i> Actualiser</button>
-</div>
-</div>
-</div>
-</div>
+<!-- /.container-fluid -->
 
-<div class="btn btn-success" onclick="cliquemoi()">click moi</div>
 
+</section>
+<!-- /.content-header -->
+
+
+
+<!-- Main content -->
+<section class="content">
+
+
+
+
+
+<div class="row">
+<div class="col-12">
+<div class="card">
+<div class="card-header">
+<h3 class="card-title">DataTable</h3>
+</div>
 <%
 stat = conn.createStatement();
 String data = "SELECT * FROM pret ORDER BY idPret DESC";
 %>
 
-<!-- page content -->
-
-<div class="clearfix"></div>
-
-<div class="row">
-<div class="col-md-12 col-sm-12 col-xs-12">
-<div class="x_panel">
-<div class="x_title">
-<h2>Tableaux de données</h2>
-<div class="clearfix"></div>
-</div>
-
-<div class="title_right">
-<div class="col-md-4 pull-right">
-<div class="input-group input-daterange">
-
-<input autocomplete="off" type="text" id="min-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="Date de début">
-
-<div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-
-<input autocomplete="off" type="text" id="max-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="Date de fin">
-
-</div>
-</div>
-</div>
-</div>
-<div class="x_content">
-<table id="datatable" class="table table-striped table-bordered">
+<!-- /.card-header -->
+<div class="card-body">
+<table id="example1" class="table table-bordered table-striped">
 <thead>
 <tr>
+<<<<<<< HEAD
 <th>N° Pret </th>
 <th>Nom Client </th>
 <th>Nom Banque </th>
@@ -67,14 +69,23 @@ String data = "SELECT * FROM pret ORDER BY idPret DESC";
 <th>date du Pret </th>
 <th>Montant A Payer </th>
 <th style="text-align: center;">Actions</th>
+=======
+        <th>N° Pret </th>
+        <th>Nom Client </th>
+        <th>Montant </th>
+        <th>date du Pret </th>
+        <th>Montant A Payer </th>
+        <th style="text-align: center;">Actions</th>
+>>>>>>> test
 </tr>
 </thead>
 <tbody>
-<%
-res = stat.executeQuery(data);
-while(res.next()){
-%>
+        <%
+        res = stat.executeQuery(data);
+        while(res.next()){
+        %>
 <tr>
+<<<<<<< HEAD
 <td><%=res.getString("pretNum")%></td>
 <td><%=res.getString("NomCli")%></td>
 <td><%=res.getString("NomBq")%></td>
@@ -85,23 +96,58 @@ while(res.next()){
 <a href='../crud/modifiepret.jsp?u=<%=res.getString("idPret")%>'><button type="button" class="btn btn-success btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</button></a>
 <a href='../crud/suppret.jsp?d=<%=res.getString("idPret")%>'><button type="button" class="btn btn-dark btn-xs"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button></a>
 </td>
+=======
+        <td><%=res.getString("pretNum")%></td>
+        <td><%=res.getString("NomCli")%></td>
+        <td><%=res.getString("Montant")%></td>
+        <td><%=res.getString("datePret")%></td>
+        <td><%=res.getString("MontantAPayer")%></td>
+        <td style="text-align: center;">
+        <a href='../crud/modifiepret.jsp?u=<%=res.getString("idPret")%>'><button type="button" class="btn btn-success btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</button></a>
+        <a href='../crud/suppret.jsp?d=<%=res.getString("idPret")%>'><button type="button" class="btn btn-dark btn-xs"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button></a>
+        </td>
+>>>>>>> test
 </tr>
 <%
 }
 %>
 </tbody>
+<!-- <tfoot>
+<tr>
+<th>N° Client</th>
+<th>Browser</th>
+<th>Platform(s)</th>
+<th>Engine version</th>
+<th>CSS grade</th>
+</tr>
+</tfoot> -->
 </table>
 </div>
+<!-- /.card-body -->
 </div>
+<!-- /.card -->
 </div>
+<!-- /.col -->
 </div>
+<!-- /.row -->
+
+
+
+
+</section>
+<!-- /.content -->
+
+
 
 </div>
-</div>
+
+
+
+<!-- /.content-wrapper -->
 
 
 <jsp:include page="../include/footer.jsp" />
-<script type="text/javascript" language="javascript" >
+<!-- <script type="text/javascript" language="javascript" >
 $('.input-daterange').datepicker({
 todayBtn:'linked',
 format: "yyyy-mm-dd",
@@ -200,4 +246,8 @@ $('#btnclear').click(function(){
 $('input[type="text"]').val('');
 table.draw();
 });
-</script>
+</script> -->
+
+
+
+
