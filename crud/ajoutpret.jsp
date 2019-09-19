@@ -2,7 +2,7 @@
 <%@page import="java.io.IOException" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste de Clients | Gestion Bancaire</title>
+<title>Prets | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -10,7 +10,7 @@
 <div class="">
 <div class="page-title">
 <div class="title_left">
-<h3>Liste de Clients | <small>Gestion Bancaire</small></h3>
+<h3>Prets | <small>Gestion des Prets Bancaire</small></h3>
 </div>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
 <div class="x_panel">
 <div class="x_title">
-<h2>Nouveau Client</h2>
+<h2>Nouveau Pret</h2>
 <div class="clearfix"></div>
 </div>
 <div class="x_content">
@@ -72,7 +72,7 @@ numcb = "P" + nb;
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idC">Nom Client <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<select name="idC">
+        <select name="idC" id="idC" class="form-control col-md-7 col-xs-12" required="required">
 <option name="idC" value="0" > -----Veillez un Client----- </option>
 <%
 String dataC = "SELECT * FROM client_table ORDER BY idc DESC";
@@ -90,7 +90,7 @@ while(resC.next()){
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idC">Nom Banque <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<select name="idB">
+        <select name="idB" id="idB" class="form-control col-md-7 col-xs-12" required="required">
 <option name="idB" value="0" > -----Veillez une Banque----- </option>
 <%
 String dataB = "SELECT * FROM banque ORDER BY NumBanque DESC";
@@ -125,7 +125,7 @@ java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
 <div class="ln_solid"></div>
 <div class="form-group">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-<a href="../pages/listepret.jsp"><button class="btn btn-dark" type="button">Annuler</button></a>
+<a href="../pages/listepret2.jsp"><button class="btn btn-dark" type="button">Annuler</button></a>
 <button type="submit" class="btn btn-primary">Ajouter</button>
 </div>
 </div>
@@ -188,7 +188,7 @@ stmt.setString(6,cccc);
 stmt.setString(7,bbbb);
 stmt.setInt(8,Mp);
 stmt.executeUpdate();
-response.sendRedirect("../pages/listepret.jsp");
+response.sendRedirect("../pages/listepret2.jsp");
 }
 } catch (Exception e) {
 e.printStackTrace();

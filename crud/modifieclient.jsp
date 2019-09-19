@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste de Clients | Gestion Bancaire</title>
+<title>Clients | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -10,7 +10,7 @@
 <div class="">
 <div class="page-title">
 <div class="title_left">
-<h3>Liste de Clients | <small>Gestion Bancaire</small></h3>
+<h3>Clients | <small>Gestion des Prets Bancaire</small></h3>
 </div>
 </div>
 
@@ -65,13 +65,41 @@ while(res.next()){
 <input type="date" name="born" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("date_naissance") %>'>
 </div>
 </div>
+
+
+
+
+
+        <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nom">Sexe <span class="required">*</span>
+        </label>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+        <select name="sexe" id="sexe" class="form-control col-md-7 col-xs-12" required="required">
+                
+                <option value='<%= res.getString("sexe") %>' selected><%= res.getString("sexe") %></option>
+                <option value="Feminin">Feminin</option>
+                <option value="Masculin">Masculin</option>
+        </select>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <div class="form-group">
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sexe">Sexe<span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
 <input type="text" name="sexe" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("sexe") %>'>
 </div>
-</div>
+</div> -->
 <div class="form-group">
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adresse">Adresse <span class="required">*</span>
 </label>

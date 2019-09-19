@@ -1,14 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste des Clients | Gestion des Prets Bancaire</title>
+<title>Effectif| Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
-
-
-
-
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -17,17 +12,28 @@
 <div class="container-fluid">
 <div class="row mb-2">
 <div class="col-sm-6">
-<h1>Liste des pret | <small>Gestion des Prets Bancaire</h1>
+<h1>Liste des Clients | <small>Gestion des Prets Bancaire</h1>
 </div>
-
+<!-- <div class="col-sm-6">
+<ol class="breadcrumb float-sm-right">
+<li class="breadcrumb-item"><a href="#">Home</a></li>
+<li class="breadcrumb-item active">DataTables</li>
+</ol>
+</div> -->
 </div>
-<a href='../crud/ajoutpret.jsp'><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button></a>
-<a href='../pages/listepret.jsp'></a><button type="button" class="btn btn-default btn-sm" id="btnclear"><i class="fa fa-refresh" aria-hidden="true"></i> Actualiser</button></a>
+<a href='../crud/ajoutclient.jsp'><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button></a>
+<a href='../pages/listeclient.jsp'></a><button type="button" class="btn btn-default btn-sm" id="btnclear"><i class="fa fa-refresh" aria-hidden="true"></i> Actualiser</button></a>
 <div class="title_right">
 <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+<!-- /.container-fluid -->
 
 
 </section>
+<!-- /.content-header -->
+
+
+
+<!-- Main content -->
 <section class="content">
 
 
@@ -40,54 +46,77 @@
 <div class="card-header">
 <h3 class="card-title">DataTable</h3>
 </div>
+
 <%
 stat = conn.createStatement();
-String data = "SELECT * FROM pret ORDER BY idPret DESC";
+String data = "SELECT DISTINCT(NomBanque) as nom, TauxBanque FROM banque ORDER BY NumBanque DESC";
 %>
+
 
 <!-- /.card-header -->
 <div class="card-body">
 <table id="example1" class="table table-bordered table-striped">
 <thead>
 <tr>
-<th>N° Pret </th>
-<th>Nom Client </th>
-<th>Nom Banque </th>
-<th>Montant </th>
-<th>date du Pret </th>
-<th>Montant A Payer </th>
-<th style="text-align: center;">Actions</th>
-
+<th>Dessign</th>
+<th>Taux</th>
+<th>EFFECTIFE</th>
+<th>Montant</th>
+<th>Montant A Payer</th>
 </tr>
 </thead>
 <tbody>
 <%
+
+String datappp = "";
+stat5 = conn5.createStatement();
+
 res = stat.executeQuery(data);
 while(res.next()){
-%>
-<tr>
-<td><%=res.getString("pretNum")%></td>
-<td><%=res.getString("NomCli")%></td>
-<td><%=res.getString("NomBq")%></td>
-<td><%=res.getString("Montant")%></td>
-<td><%=res.getString("datePret")%></td>
-<td><%=res.getString("MontantAPayer")%></td>
-<td style="text-align: center;">
-<a href='../crud/modifiepret.jsp?u=<%=res.getString("idPret")%>'><button type="button" class="btn btn-success btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</button></a>
-<a href='../crud/suppret.jsp?d=<%=res.getString("idPret")%>'><button type="button" class="btn btn-dark btn-xs"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button></a>
-</td>
-</tr>
-<%
+
+    datappp = "SELECT COUNT(cincand) as EFFECTIFE, SUM(Montant) as Montant,SUM(MontantAPayer) as MontantAPayer  FROM `pret` WHERE NomBq ='"+res.getString("nom")+"'";
+    res5 = stat5.executeQuery(datappp);
+   
+    while(res5.next()){
+
+        %>
+        <tr>
+        <td><%=res.getString("nom")%></td>
+        <td><%=res.getString("TauxBanque")%> % </td>
+        <td><%=res5.getString("EFFECTIFE")%></td>
+        <td><%=res5.getString("Montant")%></td>
+        <td><%=res5.getString("MontantAPayer")%></td>
+        </tr>
+        <%
+
+    }
 }
 %>
 </tbody>
+<!-- <tfoot>
+<tr>
+<th>N° Client</th>
+<th>Browser</th>
+<th>Platform(s)</th>
+<th>Engine version</th>
+<th>CSS grade</th>
+</tr>
+</tfoot> -->
 </table>
 </div>
+<!-- /.card-body -->
 </div>
+<!-- /.card -->
 </div>
+<!-- /.col -->
 </div>
+<!-- /.row -->
+
+
+
 
 </section>
+<!-- /.content -->
 
 
 
@@ -95,8 +124,11 @@ while(res.next()){
 
 
 
- <jsp:include page="../include/footer.jsp" />
-<script type="text/javascript" language="javascript" >
+<!-- /.content-wrapper -->
+
+
+<jsp:include page="../include/footer.jsp" />
+<!-- <script type="text/javascript" language="javascript" >
 $('.input-daterange').datepicker({
 todayBtn:'linked',
 format: "yyyy-mm-dd",
@@ -195,7 +227,7 @@ $('#btnclear').click(function(){
 $('input[type="text"]').val('');
 table.draw();
 });
-</script> 
+</script> -->
 
 
 

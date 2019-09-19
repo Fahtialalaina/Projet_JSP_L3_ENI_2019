@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste de Clients | Gestion Bancaire</title>
+<title>Effectifs | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -10,78 +10,59 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Liste de Clients | <small>Gestion Bancaire</small></h3>
+              <h3>Effectifs | <small>Gestion des Prets Bancaire</small></h3>
             </div>
-    
-            <div class="title_right">
-                <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                      <a href='../crud/ajoutclient.jsp'><button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button></a>
-                      <button type="button" class="btn btn-default btn-sm" id="btnclear"><i class="fa fa-refresh" aria-hidden="true"></i> Actualiser</button>
-                  </div>
-                </div>
-              </div>
           </div>
-<%
-stat = conn.createStatement();
-String data = "SELECT * FROM client_table ORDER BY cin DESC";
-%>
+
+          <%
+          stat = conn.createStatement();
+          String data = "SELECT DISTINCT(NomBanque) as nom, TauxBanque FROM banque ORDER BY NumBanque DESC";
+          %>
 
 <div class="clearfix"></div>
 
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     
-        <div class="x_panel">
-                
-                  <div class="title_right">
-                    <div class="col-md-4 pull-right">
-                        <div class="input-group input-daterange">
-                    
-                          <input autocomplete="off" type="text" id="min-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="Date de début">
-                    
-                          <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                    
-                          <input autocomplete="off" type="text" id="max-date" class="form-control date-range-filter" data-date-format="yyyy-mm-dd" placeholder="Date de fin">
-                    
-                        </div>
-                      </div>
-                  </div>
-              </div>
       <div class="x_content">
         <table id="datatable" class="table table-striped table-bordered">
-          <thead>
-            <tr>
-<th>N° Client</th>
-<th>Nom </th>
-<th>N° Téléphone </th>
-<th>Date Naissace </th>
-<th>Sexe</th>
-<th>Adresse</th>
-<th style="text-align: center;">Actions</th>
-</tr>
-</thead>
-<tbody>
-<%
-res = stat.executeQuery(data);
-while(res.next()){
-%>
-<tr>
-<td><%=res.getString("cin")%></td>
-<td><%=res.getString("nomc")%></td>
-<td><%=res.getString("gsm")%></td>
-<td><%=res.getString("date_naissance")%></td>
-<td><%=res.getString("sexe")%></td> 
-<td><%=res.getString("adresse")%></td>
-<td style="text-align: center;">
-<a href='../crud/modifieclient.jsp?u=<%=res.getString("idc")%>'><button type="button" class="btn btn-success btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</button></a>
-<a href='../crud/supclient.jsp?d=<%=res.getString("idc")%>'><button type="button" class="btn btn-dark btn-xs"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button></a>
-</td>
-</tr>
-<%
-}
-%>
-</tbody>
+            <thead>
+                <tr>
+                <th>Dessign</th>
+                <th>Taux</th>
+                <th>EFFECTIFE</th>
+                <th>Montant</th>
+                <th>Montant A Payer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                
+                String datappp = "";
+                stat5 = conn5.createStatement();
+                
+                res = stat.executeQuery(data);
+                while(res.next()){
+                
+                    datappp = "SELECT COUNT(cincand) as EFFECTIFE, SUM(Montant) as Montant,SUM(MontantAPayer) as MontantAPayer  FROM `pret` WHERE NomBq ='"+res.getString("nom")+"'";
+                    res5 = stat5.executeQuery(datappp);
+                   
+                    while(res5.next()){
+                
+                        %>
+                        <tr>
+                        <td><%=res.getString("nom")%></td>
+                        <td><%=res.getString("TauxBanque")%> % </td>
+                        <td><%=res5.getString("EFFECTIFE")%></td>
+                        <td><%=res5.getString("Montant")%></td>
+                        <td><%=res5.getString("MontantAPayer")%></td>
+                        </tr>
+                        <%
+                
+                    }
+                }
+                %>
+                </tbody>
 </table>
 </div>
 </div>
@@ -107,11 +88,11 @@ while(res.next()){
 				{
 					text: '<i class="fa fa-print" aria-hidden="true"></i> Imprimer',
 					extend: 'pdfHtml5',
-					filename: 'liste_clients',
+					filename: 'Effectifs',
 					orientation: 'portrait',
 					pageSize: 'A4', //A3 , A5 , A6 , legal , letter
 					exportOptions: {
-						columns: [ 0, 1, 2, 3, 4, 5 ],
+						columns: [ 0, 1, 2, 3, 4 ],
 						search: 'applied',
 						order: 'applied'
 					},
@@ -128,7 +109,7 @@ while(res.next()){
 									{
 										alignment: 'center',
 										fontSize: 14,
-										text: 'Liste de Clients | Gestion Bancaire'
+										text: 'Effectifs | Gestion des Prets Bancaire'
 									}
 								],
 								margin: 20

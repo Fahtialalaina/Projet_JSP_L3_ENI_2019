@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Virement | Gestion Bancaire</title>
+<title>Virement | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -9,7 +9,7 @@
         <div class="">
         <div class="page-title">
         <div class="title_left">
-        <h3>Virement | <small>Gestion Bancaire</small></h3>
+        <h3>Virement | <small>Gestion des Prets Bancaire</small></h3>
         </div>
         </div>
 

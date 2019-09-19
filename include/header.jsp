@@ -62,4 +62,4 @@
     <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="../css/style.css">
-</head>
+    <link rel="stylesheet" href="../fonts/all.min.css">

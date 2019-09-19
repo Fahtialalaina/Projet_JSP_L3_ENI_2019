@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste de Clients | Gestion Bancaire</title>
+<title>Clients | Gestion Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -88,13 +88,26 @@ java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
 <input type="date" name="born" required="required" class="form-control col-md-7 col-xs-12" value='<%= df.format(new java.util.Date()) %>'>
 </div>
 </div>
+
+<div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nom">Sexe <span class="required">*</span>
+        </label>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+        <select name="sexe" id="sexe" class="form-control col-md-7 col-xs-12" required="required">
+        <option value="Masculin">Masculin</option>
+        <option value="Feminin">Feminin</option>
+        </select>
+        </div>
+        </div>
+
+<!-- 
 <div class="form-group">
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sexe">Sexe <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
 <input type="text" name="sexe" required="required" class="form-control col-md-7 col-xs-12">
 </div>
-</div>
+</div> -->
 
 <div class="form-group">
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adresse">Adresse <span class="required">*</span>

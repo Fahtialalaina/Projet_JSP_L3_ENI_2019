@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste de Clients | Gestion Bancaire</title>
+<title>Banques | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -10,7 +10,7 @@
 <div class="">
 <div class="page-title">
 <div class="title_left">
-<h3>Liste de Clients | <small>Gestion Bancaire</small></h3>
+<h3>Banques | <small>Gestion des Prets Bancaire</small></h3>
 </div>
 </div>
 
@@ -41,7 +41,7 @@ while(res.next()){
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="a">N° Banque <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<input type="text" name="a" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("NumBq") %>'>
+<input type="text" name="a" required="required" class="form-control col-md-7 col-xs-12" value='<%= res.getString("NumBq") %>' readonly="readonly">
 </div>
 </div>
 <div class="form-group">
@@ -71,7 +71,7 @@ while(res.next()){
 <div class="ln_solid"></div>
 <div class="form-group">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-<a href="../pages/listbanque.jsp"><button class="btn btn-dark" type="button">Annuler</button></a>
+<a href="../pages/listbanque2.jsp"><button class="btn btn-dark" type="button">Annuler</button></a>
 <button type="submit" class="btn btn-success">Valider</button>
 </div>
 </div>
@@ -101,6 +101,6 @@ stmt.setString(2,b);
 stmt.setString(3,c);
 stmt.setString(4,d);
 stmt.executeUpdate();
-response.sendRedirect("../pages/listbanque.jsp");
+response.sendRedirect("../pages/listbanque2.jsp");
 }
 %>

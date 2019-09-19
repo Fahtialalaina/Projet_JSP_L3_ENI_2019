@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="../include/inc.jsp" %>
 <jsp:include page="../include/header.jsp" />
-<title>Liste de Clients | Gestion Bancaire</title>
+<title>Prets | Gestion des Prets Bancaire</title>
 <jsp:include page="../include/menu.jsp" />
 <%@ include file="../include/connex.jsp" %>
 
@@ -10,7 +10,7 @@
 <div class="">
 <div class="page-title">
 <div class="title_left">
-<h3>Liste de Clients | <small>Gestion Bancaire</small></h3>
+<h3>Prets | <small>Gestion des Prets Bancaire</small></h3>
 </div>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
 <div class="x_panel">
 <div class="x_title">
-<h2>Modification du Client</h2>
+<h2>Modification du Pret</h2>
 <div class="clearfix"></div>
 </div>
 <div class="x_content">
@@ -31,6 +31,7 @@
 <%
 stat = conn.createStatement();
 stat2 = conn2.createStatement();
+stat3 = conn3.createStatement();
 String u = request.getParameter("u");
 int num = Integer.parseInt(u);
 String data = "SELECT * FROM pret WHERE idPret='"+num+"'";
@@ -38,7 +39,7 @@ res = stat.executeQuery(data);
 
 String dataccc = "SELECT * FROM client_table ORDER BY idc DESC";
 res2 = stat2.executeQuery(dataccc);
-String databbb = "SELECT * FROM client_table ORDER BY idc DESC";
+String databbb = "SELECT * FROM banque ORDER BY NumBanque DESC";
 res3 = stat3.executeQuery(databbb);
 
 while(res.next()){
@@ -57,8 +58,8 @@ while(res.next()){
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="b">Nom Client <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<select name="b">
-<option name="b" value='<%= res.getString("NomCli") %>'> <%= res.getString("NomCli") %> </option>
+ <select name="b" id="b" class="form-control col-md-7 col-xs-12" required="required">
+<option name="b" value='<%= res.getString("NomCli") %>' selected> <%= res.getString("NomCli") %> </option>
 <%
 
 while(res2.next()){
@@ -75,8 +76,8 @@ while(res2.next()){
 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="c">Nom Banque <span class="required">*</span>
 </label>
 <div class="col-md-6 col-sm-6 col-xs-12">
-<select name="c">
-<option name="c" value='<%= res.getString("NumBanque") %>'> <%= res.getString("NomBq") %> </option>
+<select name="c" id="c" class="form-control col-md-7 col-xs-12" required="required">
+<option name="c" value='<%= res.getString("NumBanque") %>' selected> <%= res.getString("NomBq") %> </option>
 <%
 
 while(res3.next()){
@@ -111,7 +112,7 @@ while(res3.next()){
 <div class="ln_solid"></div>
 <div class="form-group">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-<a href="../pages/listeclient.jsp"><button class="btn btn-dark" type="button">Annuler</button></a>
+<a href="../pages/listepret2.jsp"><button class="btn btn-dark" type="button">Annuler</button></a>
 <button type="submit" class="btn btn-success">Valider</button>
 </div>
 </div>
@@ -174,7 +175,7 @@ stmt.setString(6,cccc);
 stmt.setString(7,bbbb);
 stmt.setInt(8,Mp);
 stmt.executeUpdate();
-response.sendRedirect("../pages/listepret.jsp");
+response.sendRedirect("../pages/listepret2.jsp");
 }
 } catch (Exception e) {
 e.printStackTrace();
